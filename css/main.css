@@ -1,0 +1,77 @@
+.vs-like-dis{
+  opacity:0.4
+}
+
+.vs-like-dis:hover{
+  opacity:1
+}
+
+.vs-like-grade{
+  padding: 6px;
+  border: 1px solid #888889;
+  background-color: #eaf1dd;
+  margin: 6px;
+}
+
+
+  #foo {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    z-index: 10;
+    font-family: arial,sans-serif;
+    width:280px;
+    box-shadow: rgba(0,0,0,0.2) 0 2px 6px;
+  }
+  .p-header{
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: gray;
+    height: 23x;
+    padding: 4px 0 0 6px;
+  }
+  .Ht {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    cursor: pointer;
+    font-size: 80%;
+    color: white;
+    margin: 0 0 0 10px;
+  }
+  .k {
+    background: #404040;
+    padding: 1px 3px 5px 0!important;
+    position: relative;
+  }
+  .Ha, .Hq, .Hl, .Hk {
+    cursor: pointer;
+  }
+  .Hl {
+    background: no-repeat url(../img/vs_pl_i.png) 0 -451px;
+    width: 24px;
+    height: 24px;
+  }
+  .Hq {
+    background: no-repeat url(../img/vs_pl_i.png) 0 -151px;
+    width: 24px;
+    height: 24px;
+  }
+  .Ha {
+    background: no-repeat url(../img/vs_pl_i.png) 0 -391px;
+    width: 24px;
+    height: 24px;
+  }
+  .aYF {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .p-content{
+    display:none;
+    height:290px;
+  }
+  .p-mic-active{
+    background-color: #ff7373;
+    color:#fff;
+  }
