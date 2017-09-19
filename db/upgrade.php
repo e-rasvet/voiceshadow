@@ -22,7 +22,7 @@ function xmldb_voiceshadow_upgrade($oldversion=0) {
     global $CFG, $THEME, $DB;
 
     $result = true;
-    
+
     $dbman = $DB->get_manager();
 
     if ($oldversion < 2013030200) {
@@ -39,7 +39,7 @@ function xmldb_voiceshadow_upgrade($oldversion=0) {
         // Assign savepoint reached.
         upgrade_mod_savepoint(true, 2013030200, 'voiceshadow');
     }
-    
+
     if ($oldversion < 2014030200) {
         // Define table assign_user_mapping to be created.
         $table = new xmldb_table('voiceshadow_likes');
@@ -54,17 +54,17 @@ function xmldb_voiceshadow_upgrade($oldversion=0) {
         // Adding keys to table assign_user_mapping.
         $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
         $table->add_key('user', XMLDB_KEY_FOREIGN, array('userid'), 'user', array('id'));
-        
+
         // Conditionally launch create table for assign_user_mapping.
         if (!$dbman->table_exists($table)) {
             $dbman->create_table($table);
         }
-        
+
         // Assign savepoint reached.
         upgrade_mod_savepoint(true, 2014030200, 'voiceshadow');
     }
-    
-    
+
+
     if ($oldversion < 2014080400) {
         // Define table assign_user_mapping to be created.
         $table = new xmldb_table('voiceshadow');
@@ -76,7 +76,7 @@ function xmldb_voiceshadow_upgrade($oldversion=0) {
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
-        
+
         $field = new xmldb_field('grademethodt', XMLDB_TYPE_CHAR, '255', null,
                                  XMLDB_NOTNULL, null, 'default', 'grademethod');
 
@@ -84,9 +84,66 @@ function xmldb_voiceshadow_upgrade($oldversion=0) {
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
-        
+
         // Assign savepoint reached.
         upgrade_mod_savepoint(true, 2014080400, 'voiceshadow');
+    }
+
+    if ($oldversion < 2017030300) {
+        // Define table assign_user_mapping to be created.
+        $table = new xmldb_table('voiceshadow_appfiles');
+
+        // Adding fields to table assign_user_mapping.
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field('instance', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('fileid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('sourcefileid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('var', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('time', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+
+        // Adding keys to table assign_user_mapping.
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+        $table->add_key('user', XMLDB_KEY_FOREIGN, array('userid'), 'user', array('id'));
+
+        // Conditionally launch create table for assign_user_mapping.
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        // Assign savepoint reached.
+        upgrade_mod_savepoint(true, 2017030300, 'voiceshadow');
+    }
+
+    if ($oldversion < 2017063000) {
+        // Define table assign_user_mapping to be created.
+        //$table = new xmldb_table('voiceshadow_appfiles');
+        //$field = new xmldb_field('text', XMLDB_TYPE_TEXT, 'small', null, null, null, null, 'userid');
+        // Launch change of type for field grade.
+        //$dbman->add_field($table, $field);
+
+        // Assign savepoint reached.
+        upgrade_mod_savepoint(true, 2017063000, 'voiceshadow');
+    }
+
+
+    if ($oldversion < 2017073000) {
+        // Define table assign_user_mapping to be created.
+        //$table = new xmldb_table('voiceshadow');
+
+        // Adding fields to table assign_user_mapping.
+        //$table->add_field('shadowingmode', XMLDB_TYPE_INTEGER, '2', null, XMLDB_NOTNULL, null, '1', 'showspeedbox');
+
+        // Launch change of type for field grade.
+        //$dbman->add_field($table, $field);
+
+        $table = new xmldb_table('voiceshadow');
+        $field = new xmldb_field('shadowingmode', XMLDB_TYPE_INTEGER, '2', null, null, null, '1', null);
+        // Launch change of type for field grade.
+        $dbman->add_field($table, $field);
+
+        // Assign savepoint reached.
+        upgrade_mod_savepoint(true, 2017073000, 'voiceshadow');
     }
 
     return $result;
